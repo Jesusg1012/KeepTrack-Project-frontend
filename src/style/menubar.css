@@ -1,0 +1,61 @@
+#menuBar{
+  /* height: 35px; */
+  background-color: #FC4A1A;
+  display: flex;
+  position: relative;
+  min-width: 1000px;
+  width: 100%;
+  z-index: 1;
+}
+#logo{
+  font-size: 30px;
+  margin-right: 0px;
+  margin-left: 20px;
+}
+#menuBar-buttons{
+  margin-left: 200px;
+  height: 50px;
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  height: 70%;
+}
+#menuBar-buttons button{
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 0px;
+  font-size: 15px;
+  color: rgb(250, 250, 250);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  width: 150px;
+}
+#menuBar-buttons button:focus{
+  outline: none;
+}
+#menuBar-buttons button:active{
+  background-color: rgb(250, 250, 250);
+  color: black;
+}
+#user-logo{
+  font-size: 30px;
+  margin-left: auto;
+  margin-right: 20px;
+}
+#infoBar{
+  width: 100%;
+  background-color: rgb(250, 250, 250);
+  text-align: center;
+  min-width: 1000px;
+  position: relative;
+}
+#leftmenu{
+  float: left;
+  position: relative;
+  background-color: rgb(250, 250, 250);
+  padding-right: 50px;
+  padding-left: 50px;
+  margin-left: 20px;
+  height: 100%;
+  border-radius: 10px;
+  text-align: center;
+}

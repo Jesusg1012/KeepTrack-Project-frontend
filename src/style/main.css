@@ -1,0 +1,49 @@
+#main{
+  background-color: #DFDCE3;
+  height: 100%;
+}
+#body-container{
+  position: relative;
+  height: 85%;
+  top: 0px;
+  width: 95%;
+  min-width: 1000px;
+  bottom: 0px;
+  min-height: 500px;
+  padding-top: 25px;
+}
+#footer{
+  bottom: -30px;
+  height: 30px;
+  position: fixed;
+  width: 100%;
+  background-color: black;
+  color: white;
+}
+#reminder-container{
+  position: relative;
+  margin-left: 250px;
+  margin-right: auto;
+  border-radius: 10px;
+  height: 100%;
+  background-color: rgb(250, 250, 250);
+
+}
+#reminder-content{
+  height: auto;
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.bottom-padding{
+  height: 20px;
+  width: 100%;
+  min-width: 30px;
+  min-height: 10px;
+}
+.top-padding{
+  height: 20px;
+  width: 100%;
+  min-width: 30px;
+  min-height: 10px;
+}
