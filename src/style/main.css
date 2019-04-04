@@ -1,5 +1,5 @@
 #main{
-  background-color: #DFDCE3;
+  background-color: rgb(230, 230, 230);
   height: 100%;
 }
 #body-container{
@@ -7,19 +7,20 @@
   top: 0px;
   width: 100%;
   min-width: 1000px;
+  max-width: 1500px;
   bottom: 0px;
-  padding-top: 75px;
-  /* overflow-y: scroll; */
-  overflow: hidden;
-
+  padding-top: 80px;
 }
 #footer{
-  bottom: -30px;
+  bottom: 0px;
   height: 30px;
   position: fixed;
   width: 100%;
-  background-color: black;
-  color: white;
+  background-color: rgb(245,245,245);
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-color: rgb(150,150,150);
+  color: black;
 }
 
 .bottom-padding{

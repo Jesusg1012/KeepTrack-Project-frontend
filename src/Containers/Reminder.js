@@ -15,22 +15,37 @@ class Reminder extends Component {
   render() {
     return (
       <div id="reminder-container">
-        <div class="top-padding"></div>
+      <div id="reminder-header-wrapper">
+        <div id="reminder-header">
+          <div class="top-reminder">Reminders</div>
+          <div class="top-reminder">Description</div>
+          <div class="top-reminder">Date</div>
+        </div>
+        </div>
+        {this.props.user ?
         <div id="reminder-wrapper">
           <div id="reminder-list">
-            {this.props.user ?
-                this.props.user.reminders.map(reminder => {
-                  return <div class="reminder">{reminder.title}</div>
-                })
-                : "LOADING"}
+          <div class="reminder"></div>
+
+            {this.props.user.reminders.map(reminder => {
+                  return <div class="reminder-listed">{reminder.title}</div>
+                })}
           </div>
-          <div id="reminder-content">{this.props.user ?
-              this.props.user.reminders.map(reminder => {
+
+          <div id="reminder-content">
+          <div class="reminder"></div>
+          {this.props.user.reminders.map(reminder => {
                 return <div class="reminder">{reminder.description}</div>
-              })
-              : "LOADING"}</div>
-          </div>
-          <div class="bottom-padding"></div>
+              })}
+              </div>
+              <div id="reminder-date">
+              <div class="reminder"></div>
+                  {this.props.user.reminders.map(reminder => {
+                    return <div class="reminder">{reminder.time}</div>
+                  })}
+                  </div>
+              </div>
+          : "LOADING"}
       </div>
     );
   }

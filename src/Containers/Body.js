@@ -13,7 +13,7 @@ class Body extends Component {
           <Switch>
             <Route path='/reminders' render={() => <Reminder />} />
           </Switch>
-          
+          <Footer />
       </div>
     );
   }
