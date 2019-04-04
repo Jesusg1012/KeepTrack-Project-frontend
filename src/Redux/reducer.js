@@ -5,8 +5,9 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   console.log(action);
   switch (action.type) {
-    case "NONE":
-    return state
+    case "ADD_USER":{
+      return {...state, user: action.payload.user}
+    }
     case "CREATE":
     return state
     default:

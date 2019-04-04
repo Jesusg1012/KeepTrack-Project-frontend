@@ -9,11 +9,11 @@ class Body extends Component {
   render() {
     return (
       <div id="body-container">
-        <LeftMenu />
+
           <Switch>
             <Route path='/reminders' render={() => <Reminder />} />
           </Switch>
-          <Footer />
+          
       </div>
     );
   }

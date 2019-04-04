@@ -4,13 +4,14 @@
 }
 #body-container{
   position: relative;
-  height: 85%;
   top: 0px;
-  width: 95%;
+  width: 100%;
   min-width: 1000px;
   bottom: 0px;
-  min-height: 500px;
-  padding-top: 25px;
+  padding-top: 75px;
+  /* overflow-y: scroll; */
+  overflow: hidden;
+
 }
 #footer{
   bottom: -30px;
@@ -20,21 +21,7 @@
   background-color: black;
   color: white;
 }
-#reminder-container{
-  position: relative;
-  margin-left: 250px;
-  margin-right: auto;
-  border-radius: 10px;
-  height: 100%;
-  background-color: rgb(250, 250, 250);
 
-}
-#reminder-content{
-  height: auto;
-  width: 100%;
-  padding-left: 20px;
-  padding-right: 20px;
-}
 .bottom-padding{
   height: 20px;
   width: 100%;
