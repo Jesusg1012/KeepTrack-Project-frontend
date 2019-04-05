@@ -1,0 +1,131 @@
+#reminder-container{
+  position: relative;
+  margin-left: 0px;
+  height: 100%;
+  /* margin-bottom: 100px; */
+  font-size: 12px;
+}
+#reminder-content{
+  width: 100%;
+  text-align: left;
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-color: rgb(180,180,180);
+  background-color: rgb(245,245,245);
+  height: auto;
+  margin-bottom: auto;
+}
+#reminder-list{
+  z-index: 2;
+  left: 0;
+  position: sticky;
+  height: 100%;
+  width: 301px;
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-color: rgb(180,180,180);
+  position: -webkit-sticky;
+  padding-bottom: 15px;
+}
+#reminder-list-replace{
+  height: auto;
+  width: 100%;
+}
+#reminder-wrapper{
+  display: grid;
+  grid-template-columns: 401px 50px 50px 299px;
+  min-width: 800px;
+  height: 100%;
+}
+.reminder{
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-color: rgb(180,180,180);
+  height: 25px;
+  padding-top: 10px;
+}
+.reminder-listed{
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-color: rgb(180,180,180);
+  height: 25px;
+  background-color: rgb(245, 245, 245);
+  padding-top: 10px;
+}
+.top-reminder{
+  z-index: 1;
+  width: 100%;
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-color: rgb(150,150,150);
+  height: 25px;
+  padding-top: 10px;
+  font-size: 13px;
+}
+#reminder-date{
+  height: auto;
+  width: 100%;
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-color: rgb(180,180,180);
+  background-color: rgb(245,245,245);
+  margin-left: 1px;
+  height: auto;
+  margin-bottom: auto;
+}
+#reminder-header{
+  z-index: 1;
+  background-color: rgb(230, 230, 230);
+  display: grid;
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-color: rgb(150,150,150);
+  grid-template-columns: 400px 50px 50px 300px;
+  width: 800px;
+
+}
+#reminder-header-wrapper{
+  z-index: 1;
+  height: 35px;
+  position: sticky;
+  top: 80px;
+  width: 100%;
+  background-color: rgb(245, 245, 245);
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-color: rgb(150,150,150);
+  min-width: 800px;
+}
+.reminder-text{
+  padding-left: 10px;
+}
+.top-reminder-fix{
+  z-index: 2;
+  position: sticky;
+  top: 80px;
+  width: 100%;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-color: rgb(150,150,150);
+  height: 25px;
+  padding-top: 10px;
+  font-size: 13px;
+  background-color: rgb(230, 230, 230);
+}
+#two-grid{
+  display: grid;
+  grid-template-columns: 300px auto;
+  height: 100%;
+}
+.email-phone{
+  width: 49px;
+  text-align: left;
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-color: rgb(180,180,180);
+  background-color: rgb(245,245,245);
+  height: auto;
+  margin-bottom: auto;
+  margin-left: 1px;
+  text-align: center;
+}
