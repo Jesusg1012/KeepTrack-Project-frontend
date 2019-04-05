@@ -13,6 +13,10 @@
   margin-right: 0px;
   margin-left: 20px;
 }
+#logo img{
+  height: 80%;
+  margin-top: 5px;
+}
 #menuBar-buttons{
   margin-left: 200px;
   height: 50px;

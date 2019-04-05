@@ -129,3 +129,14 @@
   margin-left: 1px;
   text-align: center;
 }
+.edit-title{
+  margin-top: -12px !important;
+  margin: 0px;
+  height: 50%;
+  width: 90%;
+  border: none;
+  padding: 10px;
+}
+.edit-title:active{
+
+}

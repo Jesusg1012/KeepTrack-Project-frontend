@@ -2,11 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux'
 import '../style/menubar.css'
 import { withRouter } from 'react-router-dom';
+import img from '../img/logo.png'
 const MenuBar = (props) => {
     return (
         <div id="menuBar">
 
-          <div id="logo"> KeepTrack</div>
+          <div id="logo"> <img src={img} /></div>
           <div id="menuBar-buttons">
             <button id={props.history.location.pathname === "/dashboard" ? "selected-menu":""}>DashBoard</button>
             <button id={props.history.location.pathname === "/to-do's" ? "selected-menu":""}>To-Do's</button>
