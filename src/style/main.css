@@ -6,12 +6,13 @@
   position: relative;
   top: 0px;
   width: 100%;
-  min-width: 1000px;
-  max-width: 1500px;
+  min-width: 800px;
   bottom: 0px;
   padding-top: 80px;
+  height: 100%;
 }
 #footer{
+  z-index: 3;
   bottom: 0px;
   height: 30px;
   position: fixed;
@@ -34,4 +35,14 @@
   width: 100%;
   min-width: 30px;
   min-height: 10px;
+}
+#counter-footer{
+  height: 100%;
+  text-align: center;
+  width: 301px;
+  border-right-style: solid;
+  border-right-width: 1px;
+  font-size: 12px;
+  border-color: rgb(150,150,150);
+  padding-top: 8px;
 }

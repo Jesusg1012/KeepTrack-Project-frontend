@@ -1,10 +1,22 @@
 import React from 'react';
-import '../style/menubar.css'
+import { connect } from 'react-redux'
 const Footer = (props) => {
     return (
       <div id="footer">
-        things go here
+      <div id="counter-footer">
+        {props.user.reminders ?
+          props.user.reminders.length
+          : "0"
+        } Reminders
+        </div>
       </div>
     )
   }
-export default Footer
+  const mapStateToProps = (state) => {
+    console.log(state.user)
+    return {
+      user: state.user
+    }
+  }
+
+export default connect(mapStateToProps)(Footer)
