@@ -3,56 +3,75 @@ import { Route, Switch, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux'
 import '../style/main.css'
 import '../style/reminder.css'
+import { reminderChanger } from '../Redux/actions'
+import Loading from '../Components/Loading.js'
 class Reminder extends Component {
   state={
-    selected: []
+    selected: {}
   }
-  // componentDidUpdate(prevProps){
-  //   if(prevProps.user !== this.props.user){
-  //     this.setState({selected: this.props.user.reminders[0]})
-  //   }
-  // }
-  handleClick = (e) =>{
-    console.log(this.state.selected)
-    if(!this.state.selected.find(current => {
-      if(current.id === e.target.id && current.type === e.target.getAttribute('name')){
-        return true
-      }})){
+  handleClick = (e) => {
+    console.log(e.target.tagName)
+    if(e.target.tagName !== "INPUT" && e.target.tagName !== "BUTTON"){
     this.setState({
-      selected: [...this.state.selected, {id: e.target.id, type: e.target.getAttribute('name')}]
-    })
-    }
-    else{
-      console.log("NOPE")
+        selected: {id: e.target.id, type: e.target.getAttribute('name'), text: e.target.innerText}
+      })
+      this.handleSubmit();
     }
   }
   handleChange = (e) => {
-    let index = 0
-    let att = this.state.selected.find(current => {
-      if(current.id === e.target.id && current.type === e.target.getAttribute('name')){
-        return true
-      }
-      index++
+    let att = this.state.selected
+    att.text = e.target.value
+    this.setState({
+      selected: att
     })
-    
+  }
+  handleEnter = (e) => {
+    if(e.key === "Enter"){
+      this.handleSubmit()
+      this.setState({
+        selected: {}
+      })
+    }
+  }
+  handleSubmit = () => {
+    console.log(localStorage.token)
+    if(this.state.selected.id){
+    this.props.reminderChanger(this.state.selected, localStorage.token)
+  }
+  }
+  handleRemove = (e) => {
+    if(e.target.id !== this.state.selected.id && this.state.selected.id){
+      this.setState({
+        selected: {}
+      })
+    }
+  }
+  handleCancel = () => {
+    this.setState({
+      selected: {}
+    })
+  }
+  handleForm = (reminder, text) =>{
+    return <div className="edit-holder">
+    <input type="text" class="edit" id={reminder.id} name={text} onKeyDown={this.handleEnter} onChange={this.handleChange} value={this.state.selected.text}></input>
+    <button class="cancel" id={reminder.id} name={text} onClick={this.handleCancel}>X</button>
+    </div>
   }
   render() {
     return (
-      <div id="reminder-container">
+      <div id="reminder-container" onClick={this.handleRemove}>
       {this.props.user ?
         <div id="two-grid">
         <div id="reminder-list">
         <div class="top-reminder-fix"><text class="reminder-text">Reminders</text></div>
           {this.props.user.reminders.map(reminder => {
-                return <div class="reminder-listed" id={reminder.id} name="title" onDoubleClick={this.handleClick}>
+                return <div class="reminder-listed" id={reminder.id} name="title" onClick={this.handleClick}>
 
                 {
-                  this.state.selected.find(current => {
-                    if(current.id === `${reminder.id}` && current.type === "title"){
-                      return true
-                    }
-                  }) ?
-                      <input type="text" class="edit-title" id={reminder.id} name="title" onChange={this.handleChange} value={reminder.title}></input>
+                    this.state.selected.id === `${reminder.id}` && this.state.selected.type === "title"
+
+                  ? this.handleForm(reminder, "title")
+
                       :  <text class="reminder-text" id={reminder.id} name="title">{reminder.title}</text>
                 }
 
@@ -74,16 +93,14 @@ class Reminder extends Component {
           <div id="reminder-wrapper">
           <div id="reminder-content">
           {this.props.user.reminders.map(reminder => {
-                return <div class="reminder" id={reminder.id} name="description" onDoubleClick={this.handleClick}>
+                return <div class="reminder-listed" id={reminder.id} name="description" onClick={this.handleClick}>
 
                 {
-                  this.state.selected.find(current => {
-                    if(current.id === `${reminder.id}` && current.type === "description"){
-                      return true
-                    }
-                  }) ?
-                      <input type="text" class="edit-title" id={reminder.id} name="description" onChange={this.handleChange}  value={reminder.title}></input>
-                      :  <text class="reminder-text" id={reminder.id} name="description">{reminder.title}</text>
+                    this.state.selected.id === `${reminder.id}` && this.state.selected.type === "description"
+
+                  ? this.handleForm(reminder, "description")
+
+                      :  <text class="reminder-text" id={reminder.id} name="description">{reminder.description}</text>
                 }
 
                 </div>
@@ -95,7 +112,7 @@ class Reminder extends Component {
 
               <div class="email-phone">
               {this.props.user.reminders.map(reminder => {
-                    return <div class="reminder" ><input type="checkbox" id={reminder.id} name="email" onDoubleClick={this.handleClick}></input></div>
+                    return <div class="reminder" ><input type="checkbox" id={reminder.id} name="email" onClick={this.handleClick}></input></div>
                   })}<div class="reminder"><text class="reminder-text"></text></div></div>
 
 
@@ -103,7 +120,7 @@ class Reminder extends Component {
               <div class="email-phone">
               {this.props.user.reminders.map(reminder => {
                     return <div class="reminder">
-                    <input type="checkbox" id={reminder.id} name="text" onDoubleClick={this.handleClick}></input>
+                    <input type="checkbox" id={reminder.id} name="text" onClick={this.handleClick}></input>
                     </div>
                   })}
                   <div class="reminder"><text class="reminder-text"></text></div></div>
@@ -112,16 +129,13 @@ class Reminder extends Component {
 
             <div id="reminder-date">
             {this.props.user.reminders.map(reminder => {
-                  return <div class="reminder" id={reminder.id} name="time" onDoubleClick={this.handleClick}>
+                  return <div class="reminder-listed" id={reminder.id} name="time" onClick={this.handleClick}>
 
                   {
-                    this.state.selected.find(current => {
-                      if(current.id === `${reminder.id}` && current.type === "time"){
-                        return true
-                      }
-                    }) ?
-                        <input type="text" class="edit-title" id={reminder.id} name="time" onChange={this.handleChange}  value={reminder.title}></input>
-                        :  <text class="reminder-text" id={reminder.id} name="time">{reminder.title}</text>
+                      this.state.selected.id === `${reminder.id}` && this.state.selected.type === "time"
+
+                    ? this.handleForm(reminder, "time")
+                        :  <text class="reminder-text" id={reminder.id} name="time">{reminder.time}</text>
                   }
 
                   </div>
@@ -131,7 +145,7 @@ class Reminder extends Component {
               </div>
               </div>
               </div>
-          : "LOADING"}
+          : <Loading />}
       </div>
     );
   }
@@ -143,9 +157,8 @@ const mapStateToProps = (state) => {
   }
 }
 
-// const mapDispatchToProps = { getHobbits }
 const mapDispatchToProps = (dispatch) => ({
-
+  reminderChanger: (reminder, token) => dispatch(reminderChanger(reminder, token))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Reminder);

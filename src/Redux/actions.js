@@ -35,3 +35,20 @@ export const getUser = (token) => {
           .catch(console.error)
         }
       }
+export const reminderChanger = (reminder, token) => {
+  return dispatch => {
+    fetch('http://localhost:4000/api/v1/reminders', {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+        accepts: "application/json",
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        reminder
+      })
+    })
+    .then(resp => resp.json())
+    .then(json => console.log(json))
+  }
+}
