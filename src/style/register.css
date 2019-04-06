@@ -1,0 +1,30 @@
+#register{
+  width: 50%;
+  height: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+#sign-up{
+  background-color: blue;
+  display: grid;
+  grid-template-rows: auto;
+}
+#login{
+  background-color: purple;
+  display: grid;
+  grid-template-rows: auto;
+}
+.header{
+  background-color: pink;
+  height: 10px;
+  width: 100%;
+}
+.footer{
+  background-color: orange;
+  height: 10px;
+  width: 100%;
+  bottom: 0px;
+
+}
