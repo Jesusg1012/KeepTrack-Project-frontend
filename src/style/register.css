@@ -1,30 +1,120 @@
+#body{
+  background-color: #4ABDAC;
+  height: 100%;
+  margin-bottom: 0px;
+}
 #register{
   width: 50%;
-  height: 50%;
+  height: 100%;
   margin-left: auto;
   margin-right: auto;
   display: grid;
   grid-template-columns: 50% 50%;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 #sign-up{
-  background-color: blue;
+  z-index: 1;
   display: grid;
-  grid-template-rows: auto;
+  grid-template-rows: auto 500px auto;
 }
 #login{
-  background-color: purple;
+  z-index: 1;
+  height: 100%;
   display: grid;
-  grid-template-rows: auto;
+  grid-template-rows: auto 500px auto;
 }
 .header{
-  background-color: pink;
-  height: 10px;
+  height: 100%;
   width: 100%;
 }
 .footer{
-  background-color: orange;
-  height: 10px;
+  height: 100%;
   width: 100%;
-  bottom: 0px;
+}
+.hide{
+  z-index: 0;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 1s linear;
+}
+.normal{
+  visibility: visible;
+  opacity: 1;
+  transition: 1s;
+}
+#hidder{
+  display: grid;
+  grid-template-columns: 50% 50%;
+  position: absolute;
+  width: 50%;
+  height: 100%;
+}
+#hidder-content{
+  text-align: center;
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 500px auto;
+  /* background-color: #FC4A1A; */
+}
+#sign-up-content{
+  text-align: center;
+  display: grid;
+  grid-template-rows: auto;
+}
+#login-content{
+  text-align: center;
+  display: grid;
+  grid-template-rows: auto;
+  background-color:;
+}
+.input-container{
+  color: white;
+  margin-left: 50px;
+  margin-right: 50px;
+  height: 60px;
+  text-align: left;
+  font-size: 23px;
+  background-color: rgba(0,0,0,.4);
+  width: 310px;
+}
+.input-container input{
+color: white;
+width: 299px;
+border: none;
+background-color: rgba(0,0,0,0);
+border-bottom-style: solid;
+border-width: medium;
+height: 30px;
+font-size: 15px;
+padding-left: 10px;
+}
+.input-container input:focus{
+  outline: none;
+}
+.input-container label{
+  margin-left: 20px;
+}
+.input-container button{
 
+}
+.tester-left{
+  z-index: 0;
+  position: fixed;
+  margin-right: auto;
+  margin-left: 0px;
+  height: 100%;
+  background-color: #FC4A1A;
+  width: 50%;
+  transition: 1s;
+}
+.tester-right{
+  z-index: 0;
+  position: fixed;
+  margin-left: 50%;
+  margin-right: auto;
+  height: 100%;
+  background-color: #FC4A1A;
+  width: 50%;
+  transition: 1s;
 }

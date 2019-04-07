@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Route, Switch, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux'
-import { login } from '../Redux/actions'
+import { login, postUser } from '../Redux/actions'
 import Login from '../Components/Login'
 import SignUp from '../Components/SignUp'
 import '../style/register.css'
+import Hidder from '../Components/Hidder'
 
 class Register extends Component {
   state = {
@@ -25,7 +26,7 @@ class Register extends Component {
     }
     handleLogin = (e) => {
         e.preventDefault();
-            this.props.login(this.state)
+            this.props.login({email: this.state.email, password: this.state.password})
             this.setState({
                 email: '',
                 password:''
@@ -33,7 +34,7 @@ class Register extends Component {
     }
     handleSignUp = (e) => {
         e.preventDefault();
-            // this.props.login(this.state)
+            this.props.postUser(this.state)
             this.setState({
                 email: '',
                 password:''
@@ -41,10 +42,16 @@ class Register extends Component {
     }
   render() {
     return (
+      <div id="body">
+      <div className={this.props.history.location.pathname === '/authorization/signup' ?  "tester-left": "tester-right"}></div>
+
       <div id="register">
-      {}
+      {this.props.history.location.pathname === '/authorization'
+        ? this.props.history.push('/authorization/login') : null}
         <SignUp handleChange={this.handleChange} handleSubmit={this.handleSignUp} state={this.state}/>
+        <Hidder />
         <Login handleChange={this.handleChange} handleSubmit={this.handleLogin} state={this.state}/>
+      </div>
       </div>
     )}
 }
@@ -57,7 +64,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    login: (userObj) => dispatch(login(userObj))
+    login: (userObj) => dispatch(login(userObj)),
+    postUser: (userObj) => dispatch(postUser(userObj))
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Register));

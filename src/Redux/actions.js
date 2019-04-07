@@ -52,3 +52,23 @@ export const reminderChanger = (reminder, token) => {
     .then(json => console.log(json))
   }
 }
+export const postUser = (user) => {
+  return dispatch => {
+    fetch('http://localhost:4000/api/v1/users', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    Accept: 'application/json'
+  },
+  body: JSON.stringify({user})
+})
+  .then(res => res.json())
+  .then(currentUser => {
+    if(currentUser.jwt){
+      console.log("THIS DAM USER:", currentUser)
+      localStorage.token = currentUser.jwt;
+      return dispatch(addUser(currentUser.user))
+    }
+  })
+  }
+}

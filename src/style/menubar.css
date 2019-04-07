@@ -76,4 +76,5 @@
   background-color: #FC4A1A;
   width: 100%;
   height: 10px;
+  transition: width 2s;
 }
