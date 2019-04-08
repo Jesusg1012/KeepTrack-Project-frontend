@@ -15,8 +15,6 @@ const MenuBar = (props) => {
             <button id={props.history.location.pathname === "/projects" ? "selected-menu":""}>Projects</button>
           </div>
           <div id="user-logo">
-            HI
-            {console.log("User:", props.user)}
           </div>
         </div>
     )

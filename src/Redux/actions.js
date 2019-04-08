@@ -27,7 +27,6 @@ export const getUser = (token) => {
           .then(resp => resp.json())
           .then(currentUser => {
             if(currentUser.jwt){
-              console.log("THIS DAM ERROR:", currentUser)
               localStorage.token = currentUser.jwt;
               return dispatch(addUser(currentUser.user))
             }
@@ -49,7 +48,11 @@ export const reminderChanger = (reminder, token) => {
       })
     })
     .then(resp => resp.json())
-    .then(json => console.log(json))
+    .then(currentUser => {
+      if(currentUser){
+        return dispatch(addUser(currentUser))
+      }
+    })
   }
 }
 export const postUser = (user) => {
@@ -65,10 +68,41 @@ export const postUser = (user) => {
   .then(res => res.json())
   .then(currentUser => {
     if(currentUser.jwt){
-      console.log("THIS DAM USER:", currentUser)
       localStorage.token = currentUser.jwt;
       return dispatch(addUser(currentUser.user))
     }
   })
   }
 }
+export const changeNotification = (id, type, token) => {
+  return dispatch => {
+    fetch('http://localhost:4000/api/v1/notifications', {
+      method: "PATCH",
+      headers: {
+        'Content-Type': 'application/json',
+        Accepts: 'application/json',
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify({reminder: {id, type}})
+    })
+    .then(resp => resp.json())
+    .then(currentUser => {
+      if(currentUser){
+        return dispatch(addUser(currentUser))
+      }
+    })
+  }
+}
+export const addReminder = (token) => {
+  return dispatch => {
+    fetch('http://localhost:4000/api/v1/new-reminder', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+      .then(resp => resp.json())
+      .then(currentUser => dispatch(addUser(currentUser)))
+      .catch(console.error)
+    }
+  }

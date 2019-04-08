@@ -4,7 +4,7 @@ const Footer = (props) => {
     return (
       <div id="footer">
       <div id="counter-footer">
-        {props.user.reminders ?
+        {props.user ?
           props.user.reminders.length
           : "0"
         } Reminders
