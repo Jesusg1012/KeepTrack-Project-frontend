@@ -11,7 +11,7 @@ class Register extends Component {
   state = {
     name: '',
     email: '',
-    phone: '',
+    number: '',
     password:'',
     pass02: '',
     error: {
@@ -34,7 +34,8 @@ class Register extends Component {
     }
     handleSignUp = (e) => {
         e.preventDefault();
-            this.props.postUser(this.state)
+        let user = {name: this.state.name, email: this.state.email, password: this.state.password, number: this.state.number}
+            this.props.postUser(user)
             this.setState({
                 email: '',
                 password:''
