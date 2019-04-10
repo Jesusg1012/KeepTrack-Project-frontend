@@ -6,6 +6,11 @@ import LeftMenu from '../Components/LeftMenu'
 import Body from './Body'
 import '../style/main.css'
 class Main extends Component {
+  componentDidMount(){
+    if(this.props.history.location.pathname="/"){
+      this.props.history.push("/dashboard")
+    }
+  }
   render() {
     return (
       <div id="main">

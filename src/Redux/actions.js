@@ -28,7 +28,7 @@ export const getUser = (token) => {
           .then(currentUser => {
             if(currentUser.jwt){
               localStorage.token = currentUser.jwt;
-              return dispatch(addUser(currentUser.user))
+              return dispatch(getUser(currentUser.jwt))
             }
           })
           .catch(console.error)

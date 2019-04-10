@@ -114,7 +114,7 @@ class Reminder extends Component {
     onChange={this.handleTimeChange}
     showTimeSelect
     timeFormat="HH:mm"
-    timeIntervals={15}
+    timeIntervals={5}
     dateFormat="MMMM d, yyyy hh:mm aa"
     timeCaption="time"
     className="time"

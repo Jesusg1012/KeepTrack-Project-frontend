@@ -8,6 +8,7 @@ const SignUp = (props) => {
       <div className="header"></div>
       <div id="sign-up-content">
       <div className="header"></div>
+      <div className="input-container"><label>Username</label><br /><input type="text" name="username" onChange={props.handleChange} value={props.state.username}></input></div>
         <div className="input-container"><label>Name</label><br /><input type="text" name="name" onChange={props.handleChange} value={props.state.name}></input></div>
         <div className="input-container"><label>Email</label><br /><input type="text" name="email" onChange={props.handleChange} value={props.state.email}></input></div>
         <div className="input-container"><label>Phone Number</label><br /><input type="text" name="number" onChange={props.handleChange} value={props.state.number}></input></div>

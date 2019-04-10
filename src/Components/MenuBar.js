@@ -28,14 +28,15 @@ const MenuBar = (props) => {
     props.logout()
     props.history.push("/authorization")
   }
-  // <button id={props.history.location.pathname === "/dashboard" ? "selected-menu":""} onClick={handleClick}>DashBoard</button>
-  // <button id={props.history.location.pathname === "/to-do" ? "selected-menu":""} onClick={handleClick}>To-Do's</button>
   // <button id={props.history.location.pathname === "/projects" ? "selected-menu":""} onClick={handleClick}>Projects</button>
     return (
         <div id="menuBar">
-
-          <div id="logo"> <img src={img} /></div>
+        <div id="top-header">
+        <div id="logo"> <img src={img} /></div>
+        </div>
           <div id="menuBar-buttons">
+            <button id={props.history.location.pathname === "/dashboard" ? "selected-menu":""} onClick={handleClick}>DashBoard</button>
+            <button id={props.history.location.pathname === "/to-do" ? "selected-menu":""} onClick={handleClick}>To-Do's</button>
             <button id={props.history.location.pathname === "/reminders" ? "selected-menu":""} onClick={handleClick}>Reminders</button>
           </div>
           <div id="user-logo">
