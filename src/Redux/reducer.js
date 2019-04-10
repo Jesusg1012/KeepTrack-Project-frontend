@@ -1,15 +1,15 @@
 const initialState = {
-  user: ""
+  user: null
 }
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "ADD_USER":{
-      console.log("check box?", action.payload.user)
       return {...state, user: action.payload.user}
     }
-    case "CREATE":
-    return state
+    case "REMOVE_USER":{
+      return {...state, user: null}
+    }
     default:
       return state
   }

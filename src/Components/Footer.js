@@ -13,7 +13,6 @@ const Footer = (props) => {
     )
   }
   const mapStateToProps = (state) => {
-    console.log(state.user)
     return {
       user: state.user
     }

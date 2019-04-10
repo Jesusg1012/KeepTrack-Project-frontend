@@ -1,5 +1,5 @@
 const addUser = (user) => ({ type: 'ADD_USER', payload: user })
-
+export const logout = () => ({type: 'REMOVE_USER', payload:null})
 export const getUser = (token) => {
   return dispatch => {
   return fetch("http://localhost:4000/api/v1/profile", {
@@ -104,5 +104,24 @@ export const addReminder = (token) => {
       .then(resp => resp.json())
       .then(currentUser => dispatch(addUser(currentUser)))
       .catch(console.error)
+    }
+  }
+  export const removeReminder = (token, id) => {
+    return dispatch => {
+      fetch('http://localhost:4000/api/v1/reminders', {
+        method: "DELETE",
+        headers: {
+          'Content-Type': 'application/json',
+          Accepts: 'application/json',
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({reminder: {id}})
+      })
+      .then(resp => resp.json())
+      .then(currentUser => {
+        if(currentUser){
+          return dispatch(addUser(currentUser))
+        }
+      })
     }
   }

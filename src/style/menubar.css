@@ -43,11 +43,6 @@
   background-color: rgb(245, 245, 245);
   color: black;
 }
-#user-logo{
-  font-size: 30px;
-  margin-left: auto;
-  margin-right: 20px;
-}
 #infoBar{
   width: 100%;
   background-color: rgb(245, 245, 245);
@@ -77,4 +72,35 @@
   width: 100%;
   height: 10px;
   transition: width 2s;
+}
+.user-info{
+  font-size: 12px;
+  margin-right: 0px;
+  margin-left: auto;
+  width: 40%;
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto;
+  text-align: center;
+  height: 100%;
+}
+.user-info div{
+  border-left-style: solid;
+  border-width: thin;
+  border-color: rgb(200, 200, 200);
+  padding-top: 5px;
+  overflow-x: hidden;
+  word-wrap: normal;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+#user-logo{
+  font-size: 30px;
+  margin-left: auto;
+  margin-right: 20px;
+}
+#user-logo img{
+  height: 50px;
+}
+#user-content{
+  display: none;
 }

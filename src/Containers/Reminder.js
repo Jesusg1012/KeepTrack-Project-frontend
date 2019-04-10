@@ -3,7 +3,7 @@ import { Route, Switch, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux'
 import '../style/main.css'
 import '../style/reminder.css'
-import { reminderChanger, changeNotification, addReminder } from '../Redux/actions'
+import { reminderChanger, changeNotification, addReminder, removeReminder } from '../Redux/actions'
 import Loading from '../Components/Loading.js'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -18,13 +18,17 @@ class Reminder extends Component {
     this.setState({
         selected: {id: e.target.id, type: e.target.getAttribute('name'), text: time}
         })
+        this.handleSubmit();
+      }
+      else if (e.target.getAttribute('name')=== "delete" || e.target.parentNode.getAttribute('name') === "delete"){
+        this.props.removeReminder(localStorage.token, e.target.id)
       }
       else{
         this.setState({
             selected: {id: e.target.id, type: e.target.getAttribute('name'), text: e.target.innerText}
             })
+            this.handleSubmit();
       }
-      this.handleSubmit();
     }
     else if (e.target.name === "email" || e.target.name === "phone") {
       this.props.changeNotification(e.target.id, e.target.name, localStorage.token)
@@ -122,7 +126,6 @@ class Reminder extends Component {
   render() {
     return (
       <div id="reminder-container" onClick={this.handleRemove}>
-      {console.log(this.props.user)}
       {this.props.user ?
         <div id="two-grid">
         <div id="reminder-list">
@@ -150,6 +153,7 @@ class Reminder extends Component {
             <div class="top-reminder"><text class="reminder-text">Email</text></div>
             <div class="top-reminder"><text class="reminder-text">Text</text></div>
             <div class="top-reminder"><text class="reminder-text">Date</text></div>
+            <div class="top-reminder"><text class="reminder-text">Delete</text></div>
           </div>
           </div>
 
@@ -211,6 +215,14 @@ class Reminder extends Component {
                 })}
                   <div class="reminder"><text class="reminder-text"></text></div>
                   </div>
+              <div id="deletes">
+              {this.props.user.reminders.map(reminder => {
+                    return <div class={reminder.active ? "reminder-listed": "reminder-listed not-active"} id={reminder.id} name="delete" onClick={this.handleClick}>
+                      <text class="reminder-text" id={reminder.id} name="delete"><i class="fas fa-minus"></i></text>
+                    </div>
+                  })}
+                  <div class="reminder-listed"><text class="reminder-text"></text></div>
+              </div>
               </div>
               </div>
               </div>
@@ -228,7 +240,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   reminderChanger: (reminder, token) => dispatch(reminderChanger(reminder, token)),
   changeNotification: (id, type, token) => dispatch(changeNotification(id, type, token)),
-  addReminder: (token) => dispatch(addReminder(token))
+  addReminder: (token) => dispatch(addReminder(token)),
+  removeReminder: (token, id) => dispatch(removeReminder(token, id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Reminder);

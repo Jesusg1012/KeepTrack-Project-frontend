@@ -31,6 +31,7 @@ class Register extends Component {
                 email: '',
                 password:''
             })
+            this.props.history.push("/")
     }
     handleSignUp = (e) => {
         e.preventDefault();
@@ -40,6 +41,7 @@ class Register extends Component {
                 email: '',
                 password:''
             })
+            this.props.history.push("/")
     }
   render() {
     return (

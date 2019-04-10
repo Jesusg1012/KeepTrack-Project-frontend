@@ -11,8 +11,10 @@ class App extends Component {
     let token = localStorage.token;
     token ? this.props.getUser(token) : this.props.history.push("/authorization");
   }
-  componentDidUpdate(){
-    console.log("HEELLP", this.props.user)
+  componentDidUpdate(prevProps){
+    if(prevProps.user !== this.props.user){
+      this.setState({})
+    }
   }
   render() {
     return (

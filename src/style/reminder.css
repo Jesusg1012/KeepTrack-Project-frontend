@@ -34,7 +34,7 @@
 }
 #reminder-wrapper{
   display: grid;
-  grid-template-columns: 401px 50px 50px 299px;
+  grid-template-columns: 401px 50px 50px 299px 62px;
   min-width: 800px;
   height: 100%;
 }
@@ -81,8 +81,8 @@
   border-left-style: solid;
   border-left-width: 1px;
   border-color: rgb(150,150,150);
-  grid-template-columns: 400px 50px 50px 300px;
-  width: 800px;
+  grid-template-columns: 400px 50px 50px 300px 60px;
+  width: 860px;
 
 }
 #reminder-header-wrapper{
@@ -192,4 +192,20 @@
 .not-active{
   background-color: rgb(220,220,220);
   color: rgb(150,150,150);
+}
+#deletes{
+  margin-left: 2px;
+  text-align: center;
+}
+#deletes text{
+  padding-left: 0px !important;
+}
+#deletes div:active{
+  background-color: #FC4A1A;
+  color: white;
+}
+#deletes div{
+  border-color: rgb(180,180,180);
+  border-right-style: solid;
+  border-width: thin;
 }
