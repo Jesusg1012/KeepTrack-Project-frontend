@@ -133,6 +133,7 @@ export const addReminder = (token) => {
   }
   export const getProject = (project, token) => {
     return dispatch => {
+      console.log("THIS MUST BE THE PROJECT", project)
       fetch('http://localhost:4000/api/v1/project', {
         method: 'GET',
         headers:{
@@ -328,3 +329,25 @@ export const addReminder = (token) => {
       .catch(console.error)
     }
   }
+  export const postProject = (title) => {
+    return dispatch => {
+      fetch('http://localhost:4000/api/v1/project',{
+        method: 'POST',
+        headers:{
+          'Content-Type': 'application/json',
+          Accepts: 'application/json',
+          Authorization: `Bearer ${localStorage.token}`
+        },
+        body: JSON.stringify({project: {title}})
+        }
+      )
+      .then(res => res.json())
+        .then(currentProject => {
+          if(currentProject){
+            localStorage.currentProject = currentProject.id
+            return dispatch(setProject(currentProject))
+          }
+        })
+        .catch(console.error)
+      }
+    }

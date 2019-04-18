@@ -3,11 +3,12 @@ import '../style/projects.css'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom';
 import { newList } from '../Redux/actions.js'
-import { projectChanger, getProject } from '../Redux/actions'
+import { projectChanger, getProject, postProject } from '../Redux/actions'
 class ProjectPopup extends Component {
   state = {
     check: false,
-    selected: 0
+    selected: 0,
+    new: ""
   }
   handleChange = (e) => {
     let att = this.state.selected
@@ -70,6 +71,19 @@ class ProjectPopup extends Component {
       })
     }
   }
+  handleNewChange = (e) =>{
+    let att = this.state.selected
+    att = e.target.value
+    this.setState({
+      new: att
+    })
+  }
+  handleNewSubmit = (e) =>{
+    if(this.state.new.length > 1){
+      this.props.postProject(this.state.new)
+      this.props.history.push('/')
+    }
+  }
   componentDidUpdate(prevProps){
     if(prevProps.user!==this.props.user){
       this.setState({selected:{}})
@@ -78,18 +92,28 @@ class ProjectPopup extends Component {
   render() {
     return (
       <div id="project-container">
-      <div></div>
       {console.log(this.state.selected)}
       <div className={this.state.check?"project-hidder right":"project-hidder left"} onMouseEnter={this.changeState}>
-        {this.state.check? <div>View all Projects here</div>:<div>Create new Project here</div> }
-        <div></div>
+      <div style={{width:"100%", height:"40%"}}></div>
+        {this.state.check? <div className="hidder-content">View all Projects here</div>:<div className="hidder-content">Create new Project here</div> }
+        <div style={{width:"100%", height:"40%"}}></div>
       </div>
       <div id="project-wrapper">
       <div id="new-project">
       <div className="project-header">
       </div>
       <div className="project-container">
-        container
+        <div style={{width:"100%", height:"20%", padding:"10px", textAlign:"center"}}>
+        </div>
+        <div>
+        <h1 style={{textAlign:"center",  color:"rgb(50,50,50)"}}>Create new Project</h1>
+        <div className="input-container" style={{margin:"auto"}}>
+        <label>Title</label><br />
+          <input type="text" name="email" onChange={this.handleNewChange} value={this.state.new}></input>
+        </div>
+        <div className="input-container" style={{margin:"auto"}}><button onClick={this.handleNewSubmit}>Submit</button></div>
+        </div>
+        <div style={{width:"100%", height:"60%"}}></div>
       </div>
       <div className="project-footer">
       </div>
@@ -129,7 +153,8 @@ class ProjectPopup extends Component {
 }
 const mapDispatchToProps = (dispatch) => ({
   projectChanger: (project) => dispatch(projectChanger(project)),
-  getProject: (project, token) => dispatch(getProject(project, token))
+  getProject: (project, token) => dispatch(getProject(project, token)),
+  postProject: (title) => dispatch(postProject(title))
 })
 const mapStateToProps = (state) => {
   return {

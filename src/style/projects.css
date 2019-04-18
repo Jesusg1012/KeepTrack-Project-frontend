@@ -66,7 +66,9 @@
   height: 100%;
   /* min-height: 800px; */
   position: fixed;
-  background-color: #D7CEC7;
+  background-image: url("bricks.jpg");
+  border-style: solid;
+  border-width: thin;
   transition: 1s;
 }
 .right{
@@ -133,4 +135,15 @@
 }
 .project-div text{
   padding-left: 10px;
+}
+.hidder-content{
+  text-align: center;
+  font-size: 25px;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgba(0,0,0,0.5);
+  padding: 10px;
+  color: white;
+  border-radius: 5px;
 }

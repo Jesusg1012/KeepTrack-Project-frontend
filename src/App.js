@@ -13,9 +13,11 @@ class App extends Component {
     token ? this.props.getUser(token) : this.props.history.push("/authorization");
     if(this.props.user && !localStorage.currentProject)
     {
+      console.log(this.props.user.projects[0])
       this.props.getProject(this.props.user.projects[0].id, localStorage.token)
     }
     else{
+
       this.props.getProject(localStorage.currentProject, localStorage.token)
     }
   }
@@ -27,8 +29,8 @@ class App extends Component {
     }
     if(this.props.user && !localStorage.currentProject)
     {
-      console.log(localStorage.currentProject)
-      this.props.getProject(this.props.user.projects[0], localStorage.token)
+      console.log(this.props.user.projects[0])
+      this.props.getProject(this.props.user.projects[0].id, localStorage.token)
     }
   }
   render() {

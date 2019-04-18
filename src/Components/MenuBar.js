@@ -32,6 +32,8 @@ const MenuBar = (props) => {
   }
   const logout = () => {
     localStorage.removeItem("token")
+    localStorage.removeItem("currentProject")
+
     props.logout()
     props.history.push("/authorization")
   }
@@ -91,8 +93,6 @@ const MenuBar = (props) => {
                   <i class="fas fa-caret-down"></i>
                 </Dropdown.Toggle>
                   <Dropdown.Menu className="dropdown-list-menu">
-                  <Dropdown.Item onClick={renameList} id={list.id}><div id={list.id}><i id={list.id} class="fas fa-pen dropdown-i"></i> Rename</div></Dropdown.Item>
-                  <Dropdown.Item onClick={editList}><div id={list.id}><i class="fas fa-info-circle dropdown-i"></i> Edit description</div></Dropdown.Item>
                   <Dropdown.Item onClick={deleteList}><div id={list.id}><i class="fas fa-trash dropdown-i"></i> Delete</div></Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>

@@ -13,7 +13,6 @@ const SignUp = (props) => {
         <div className="input-container"><label>Email</label><br /><input type="text" name="email" onChange={props.handleChange} value={props.state.email}></input></div>
         <div className="input-container"><label>Phone Number</label><br /><input type="text" name="number" onChange={props.handleChange} value={props.state.number}></input></div>
         <div className="input-container"><label>Password</label><br /><input type="password" name="password" onChange={props.handleChange} value={props.state.password}></input></div>
-        <div className="input-container"><label>Confirm Password</label><br /><input type="password" name="pass02" onChange={props.handleChange} value={props.state.pass02}></input></div>
         <div className="input-container"><button onClick={props.handleSubmit}>Submit</button></div>
         <div className="header"></div>
         </div>

@@ -9,6 +9,7 @@ import Hidder from '../Components/Hidder'
 
 class Register extends Component {
   state = {
+    username: '',
     name: '',
     email: '',
     number: '',
@@ -35,7 +36,7 @@ class Register extends Component {
     }
     handleSignUp = (e) => {
         e.preventDefault();
-        let user = {name: this.state.name, email: this.state.email, password: this.state.password, number: this.state.number}
+        let user = {name: this.state.name, email: this.state.email, password: this.state.password, number: this.state.number, username: this.state.username}
             this.props.postUser(user)
             this.setState({
                 email: '',
