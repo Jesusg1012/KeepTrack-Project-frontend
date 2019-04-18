@@ -4,35 +4,58 @@ import { Route, Switch, withRouter } from 'react-router-dom';
 import Register from './Containers/Register'
 import Main from './Containers/Main'
 import { connect } from 'react-redux'
-
-import { getUser } from './Redux/actions'
+import { getUser, getProject} from './Redux/actions'
+import Loading from './Components/Loading'
+import Project from './Components/Project'
 class App extends Component {
   componentDidMount(){
     let token = localStorage.token;
     token ? this.props.getUser(token) : this.props.history.push("/authorization");
+    if(this.props.user && !localStorage.currentProject)
+    {
+      this.props.getProject(this.props.user.projects[0].id, localStorage.token)
+    }
+    else{
+      this.props.getProject(localStorage.currentProject, localStorage.token)
+    }
   }
+
   componentDidUpdate(prevProps){
-    if(prevProps.user !== this.props.user){
-      this.setState({})
+    console.log(this.props.project)
+    if(prevProps.user !== this.props.user || prevProps.project !== this.props.project){
+        this.setState({})
+    }
+    if(this.props.user && !localStorage.currentProject)
+    {
+      console.log(localStorage.currentProject)
+      this.props.getProject(this.props.user.projects[0], localStorage.token)
     }
   }
   render() {
     return (
       <Switch>
         <Route path="/authorization" render={() => <Register />} />
-        <Route path="/" render={() => <Main />} />
+        <Route path="/project" render={() => <Project />} />
+        <Route path="/" render={() => {
+          if(this.props.user && this.props.project){
+            return <Main />}
+          else{
+            return <Loading />
+          }}} />
       </Switch>
     );
   }
 }
 const mapStateToProps = (state) => {
   return {
-    user: state.user
+    user: state.user,
+    project: state.project
   }
 }
 
 // const mapDispatchToProps = { getHobbits }
 const mapDispatchToProps = (dispatch) => ({
-  getUser: (token) => dispatch(getUser(token))
+  getUser: (token) => dispatch(getUser(token)),
+  getProject: (project, token) => dispatch(getProject(project, token))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(App));

@@ -81,7 +81,7 @@ class Reminder extends Component {
   handleForm = (reminder, text) =>{
     return <div className="edit-holder">
     <input type="text" class="edit" id={reminder.id} name={text} onKeyDown={this.handleEnter} onChange={this.handleChange} value={this.state.selected.text}></input>
-    <button class="cancel" id={reminder.id} name={text} onClick={this.handleCancel}>X</button>
+    <button class="cancel" id={reminder.id} name={text} onClick={this.handleCancel}><i class="fas fa-times"></i></button>
     </div>
   }
   makeDate = (reminder) =>{
@@ -119,7 +119,7 @@ class Reminder extends Component {
     timeCaption="time"
     className="time"
     />
-    <button class="cancel" id={reminder.id} name="time" onClick={this.handleCancel}>X</button>
+    <button class="cancel" id={reminder.id} name="time" onClick={this.handleCancel}><i class="fas fa-times"></i></button>
 
     </div>
   }
@@ -181,7 +181,7 @@ class Reminder extends Component {
               {this.props.user.reminders.map(reminder => {
                     return <div class={reminder.active ? "reminder":"reminder not-active"} >
                     {reminder.active ?
-                    <input type="checkbox"  id={reminder.id} name="email" onClick={this.handleClick} checked={reminder.email}></input>: null
+                    <input type="checkbox" id={reminder.id} name="email" onClick={this.handleClick} checked={reminder.email}></input>: null
                     }
                     </div>
                   })}<div class="reminder"><text class="reminder-text"></text></div></div>

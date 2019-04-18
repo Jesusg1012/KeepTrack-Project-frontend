@@ -89,7 +89,7 @@
   z-index: 1;
   height: 35px;
   position: sticky;
-  top: 80px;
+  top: 120px;
   width: 100%;
   background-color: rgb(245, 245, 245);
   border-bottom-style: solid;
@@ -103,7 +103,7 @@
 .top-reminder-fix{
   z-index: 2;
   position: sticky;
-  top: 80px;
+  top: 120px;
   width: 100%;
   border-bottom-style: solid;
   border-bottom-width: 1px;
@@ -142,7 +142,7 @@
   font-size: 12px;
 }
 .edit:focus{
-  outline-color: #FC4A1A;
+  outline-color: #76323F;
 }
 .cancel{
  height: 100%;
@@ -162,7 +162,7 @@
   outline: none;
 }
 .cancel:active{
-  background-color: #FC4A1A;
+  background-color: #76323F;
   color: white;
 }
 .edit-holder{
@@ -173,7 +173,10 @@
 
 }
 .adder:hover{
-  background-color: rgba(0,0,0,.1);
+  background-color: rgb(200,200,200);
+}
+.adder:active{
+  background-color: rgb(150,150,150);
 }
 .time{
   margin-top: -10px !important;
@@ -187,7 +190,7 @@
   font-size: 12px;
 }
 .time:focus{
-  outline-color: #FC4A1A;
+  outline-color: #76323F;
 }
 .not-active{
   background-color: rgb(220,220,220);
@@ -201,7 +204,7 @@
   padding-left: 0px !important;
 }
 #deletes div:active{
-  background-color: #FC4A1A;
+  background-color: #76323F;
   color: white;
 }
 #deletes div{

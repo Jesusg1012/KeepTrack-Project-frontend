@@ -8,7 +8,7 @@ import '../style/main.css'
 class Main extends Component {
   componentDidMount(){
     if(this.props.history.location.pathname="/"){
-      this.props.history.push("/dashboard")
+      this.props.history.push("/reminders")
     }
   }
   render() {

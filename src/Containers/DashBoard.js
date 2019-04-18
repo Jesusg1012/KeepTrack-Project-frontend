@@ -8,7 +8,7 @@ class DashBoard extends Component {
   render() {
     return (
       <div id="dashboard">
-      Work In progress
+        Work In progress
       </div>
     );
   }

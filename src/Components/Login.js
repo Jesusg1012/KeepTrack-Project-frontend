@@ -14,7 +14,7 @@ const Login = (props) => {
         </div>
         <div className="input-container">
           <label>Password</label><br />
-          <input type="text" name="password" onChange={props.handleChange} value={props.state.password}></input>
+          <input type="password" name="password" onChange={props.handleChange} value={props.state.password}></input>
         </div>
         <div className="input-container">
           <button onClick={props.handleSubmit}>Submit</button>

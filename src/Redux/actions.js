@@ -1,4 +1,6 @@
 const addUser = (user) => ({ type: 'ADD_USER', payload: user })
+const setProject = (project) => ({type: 'ADD_PROJECT', payload: project})
+const setList = (list) => ({type: 'ADD_LIST', payload: list})
 export const logout = () => ({type: 'REMOVE_USER', payload:null})
 export const getUser = (token) => {
   return dispatch => {
@@ -53,6 +55,7 @@ export const reminderChanger = (reminder, token) => {
         return dispatch(addUser(currentUser))
       }
     })
+    .catch(console.error)
   }
 }
 export const postUser = (user) => {
@@ -69,9 +72,10 @@ export const postUser = (user) => {
   .then(currentUser => {
     if(currentUser.jwt){
       localStorage.token = currentUser.jwt;
-      return dispatch(addUser(currentUser.user))
+      return dispatch(getUser(currentUser.jwt))
     }
   })
+  .catch(console.error)
   }
 }
 export const changeNotification = (id, type, token) => {
@@ -91,6 +95,7 @@ export const changeNotification = (id, type, token) => {
         return dispatch(addUser(currentUser))
       }
     })
+    .catch(console.error)
   }
 }
 export const addReminder = (token) => {
@@ -123,5 +128,203 @@ export const addReminder = (token) => {
           return dispatch(addUser(currentUser))
         }
       })
+      .catch(console.error)
+    }
+  }
+  export const getProject = (project, token) => {
+    return dispatch => {
+      fetch('http://localhost:4000/api/v1/project', {
+        method: 'GET',
+        headers:{
+          Project: `${project}`,
+          Authorization: `Bearer ${token}`
+        }
+      })
+      .then(resp => resp.json())
+      .then(currentProject => {
+        if(currentProject){
+          return dispatch(setProject(currentProject))
+        }
+      })
+      .catch(console.error)
+      }
+  }
+  export const newList = (title) => {
+    return dispatch => {
+      fetch('http://localhost:4000/api/v1/list', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accepts: 'application/json',
+          Authorization: `Bearer ${localStorage.token}`
+        },
+        body: JSON.stringify({list: {title: title, project: localStorage.currentProject}})
+      })
+      .then(res => res.json())
+      .then(currentProject => {
+        if(currentProject){
+          return dispatch(setProject(currentProject))
+        }
+      })
+      .catch(console.error)
+    }
+  }
+  export const getList = (list, project) => {
+    return dispatch => {
+      fetch('http://localhost:4000/api/v1/list', {
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${localStorage.token}`,
+            Project: `${project}`,
+            List: `${list}`
+        }
+      })
+      .then(res => res.json())
+      .then(currentList => {
+        if(currentList){
+          return dispatch(setList(currentList))
+        }
+      })
+      .catch(console.error)
+    }
+  }
+  export const addColumn = (id) => {
+    return dispatch => {
+      fetch('http://localhost:4000/api/v1/list/column', {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          Accepts: 'application/json',
+          Authorization: `Bearer ${localStorage.token}`
+        },
+        body: JSON.stringify({list: {id: id, project: localStorage.currentProject}})
+      })
+      .then(res => res.json())
+      .then(currentList => {
+        if(currentList){
+          return dispatch(setList(currentList))
+        }
+      })
+      .catch(console.error)
+    }
+  }
+  export const addRow = (id) => {
+    return dispatch => {
+      fetch('http://localhost:4000/api/v1/list/row', {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          Accepts: 'application/json',
+          Authorization: `Bearer ${localStorage.token}`
+        },
+        body: JSON.stringify({list: {id: id, project: localStorage.currentProject}})
+      })
+      .then(res => res.json())
+      .then(currentList => {
+        if(currentList){
+          return dispatch(setList(currentList))
+        }
+      })
+      .catch(console.error)
+    }
+  }
+  export const deleteRow = (id, row) => {
+    return dispatch => {
+      fetch('http://localhost:4000/api/v1/list/row', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Accepts: 'application/json',
+          Authorization: `Bearer ${localStorage.token}`
+        },
+        body: JSON.stringify({list: {id: id, project: localStorage.currentProject, row: row}})
+      })
+      .then(res => res.json())
+      .then(currentList => {
+        if(currentList){
+          return dispatch(setList(currentList))
+        }
+      })
+      .catch(console.error)
+    }
+  }
+  export const deleteColumn = (id, column) => {
+    return dispatch => {
+      fetch('http://localhost:4000/api/v1/list/column', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Accepts: 'application/json',
+          Authorization: `Bearer ${localStorage.token}`
+        },
+        body: JSON.stringify({list: {id: id, project: localStorage.currentProject, column: column}})
+      })
+      .then(res => res.json())
+      .then(currentList => {
+        if(currentList){
+          return dispatch(setList(currentList))
+        }
+      })
+      .catch(console.error)
+    }
+  }
+  export const changeInfo = (id, type, text, type_id) => {
+    return dispatch => {
+      fetch('http://localhost:4000/api/v1/list/info', {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          Accepts: 'application/json',
+          Authorization: `Bearer ${localStorage.token}`
+        },
+        body: JSON.stringify({list: {id: id, project: localStorage.currentProject, text: text, type: type, type_id}})
+      })
+      .then(res => res.json())
+      .then(currentList => {
+        if(currentList){
+          return dispatch(setList(currentList))
+        }
+      })
+      .catch(console.error)
+    }
+  }
+  export const deleteList = (id) => {
+    return dispatch => {
+      fetch('http://localhost:4000/api/v1/list', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Accepts: 'application/json',
+          Authorization: `Bearer ${localStorage.token}`
+        },
+        body: JSON.stringify({list: {id: id, project: localStorage.currentProject}})
+      })
+      .then(res => res.json())
+      .then(currentProject => {
+        if(currentProject){
+          return dispatch(setProject(currentProject))
+        }
+      })
+      .catch(console.error)
+    }
+  }
+  export const projectChanger = (project) => {
+    return dispatch => {
+      fetch('http://localhost:4000/api/v1/project', {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          Accepts: 'application/json',
+          Authorization: `Bearer ${localStorage.token}`
+        },
+        body: JSON.stringify({project})
+      })
+      .then(res => res.json())
+      .then(currentUser => {
+        if(currentUser){
+          return dispatch(addUser(currentUser))
+        }
+      })
+      .catch(console.error)
     }
   }
