@@ -149,7 +149,7 @@ class List extends Component {
           })
           }
           <div className="column-wrapper">
-          <div className="row top-column column add column-adder" onClick={this.addHandler} name="add-column"><text class="text" name="add-column"><i class="fas fa-plus" name="add-column"></i></text></div>
+          <div style={{zIndex:"2"}} className="row top-column column add column-adder" onClick={this.addHandler} name="add-column"><text class="text" name="add-column"><i class="fas fa-plus" name="add-column"></i></text></div>
           {
             this.state.list.names.map(row => {
               return <div className="row column delete" id={row.id} onClick={this.deleteHandler} name="delete-row"><text class="text" id={row.id} onClick={this.deleteHandler} name="delete-row"><i class="fas fa-minus" id={row.id} onClick={this.deleteHandler} name="delete-row"></i></text></div>

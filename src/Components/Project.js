@@ -109,7 +109,7 @@ class ProjectPopup extends Component {
         <h1 style={{textAlign:"center",  color:"rgb(50,50,50)"}}>Create new Project</h1>
         <div className="input-container" style={{margin:"auto"}}>
         <label>Title</label><br />
-          <input type="text" name="email" onChange={this.handleNewChange} value={this.state.new}></input>
+          <input type="text" name="title" onChange={this.handleNewChange} value={this.state.new}></input>
         </div>
         <div className="input-container" style={{margin:"auto"}}><button onClick={this.handleNewSubmit}>Submit</button></div>
         </div>
