@@ -1,10 +1,11 @@
 const addUser = (user) => ({ type: 'ADD_USER', payload: user })
 const setProject = (project) => ({type: 'ADD_PROJECT', payload: project})
 const setList = (list) => ({type: 'ADD_LIST', payload: list})
+const port = process.env.PORT || "http://localhost:4000"
 export const logout = () => ({type: 'REMOVE_USER', payload:null})
 export const getUser = (token) => {
   return dispatch => {
-  return fetch("https://keeptrack-jg.herokuapp.com/api/v1/profile", {
+  return fetch(`${port}/api/v1/profile`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`
@@ -18,7 +19,7 @@ export const getUser = (token) => {
 
   export const login = (user) => {
       return dispatch => {
-        fetch("https://keeptrack-jg.herokuapp.com/api/v1/login", {
+        fetch(`${port}/api/v1/login`, {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -38,7 +39,7 @@ export const getUser = (token) => {
       }
 export const reminderChanger = (reminder, token) => {
   return dispatch => {
-    fetch('https://keeptrack-jg.herokuapp.com/api/v1/reminders', {
+    fetch(`${port}/api/v1/reminders`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -60,7 +61,7 @@ export const reminderChanger = (reminder, token) => {
 }
 export const postUser = (user) => {
   return dispatch => {
-    fetch('https://keeptrack-jg.herokuapp.com/api/v1/users', {
+    fetch(`${port}/api/v1/users`, {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
@@ -80,7 +81,7 @@ export const postUser = (user) => {
 }
 export const changeNotification = (id, type, token) => {
   return dispatch => {
-    fetch('https://keeptrack-jg.herokuapp.com/api/v1/notifications', {
+    fetch(`${port}/api/v1/notifications`, {
       method: "PATCH",
       headers: {
         'Content-Type': 'application/json',
@@ -100,7 +101,7 @@ export const changeNotification = (id, type, token) => {
 }
 export const addReminder = (token) => {
   return dispatch => {
-    fetch('https://keeptrack-jg.herokuapp.com/api/v1/new-reminder', {
+    fetch(`${port}/api/v1/new-reminder`, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${token}`
@@ -113,7 +114,7 @@ export const addReminder = (token) => {
   }
   export const removeReminder = (token, id) => {
     return dispatch => {
-      fetch('https://keeptrack-jg.herokuapp.com/api/v1/reminders', {
+      fetch(`${port}/api/v1/reminders`, {
         method: "DELETE",
         headers: {
           'Content-Type': 'application/json',
@@ -134,7 +135,7 @@ export const addReminder = (token) => {
   export const getProject = (project, token) => {
     return dispatch => {
       console.log("THIS MUST BE THE PROJECT", project)
-      fetch('https://keeptrack-jg.herokuapp.com/api/v1/project', {
+      fetch(`${port}/api/v1/project`, {
         method: 'GET',
         headers:{
           Project: `${project}`,
@@ -152,7 +153,7 @@ export const addReminder = (token) => {
   }
   export const newList = (title) => {
     return dispatch => {
-      fetch('https://keeptrack-jg.herokuapp.com/api/v1/list', {
+      fetch(`${port}/api/v1/list`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -172,7 +173,7 @@ export const addReminder = (token) => {
   }
   export const getList = (list, project) => {
     return dispatch => {
-      fetch('https://keeptrack-jg.herokuapp.com/api/v1/list', {
+      fetch(`${port}/api/v1/list`, {
         method: 'GET',
         headers: {
             Authorization: `Bearer ${localStorage.token}`,
@@ -191,7 +192,7 @@ export const addReminder = (token) => {
   }
   export const addColumn = (id) => {
     return dispatch => {
-      fetch('https://keeptrack-jg.herokuapp.com/api/v1/list/column', {
+      fetch(`${port}/api/v1/list/column`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -211,7 +212,7 @@ export const addReminder = (token) => {
   }
   export const addRow = (id) => {
     return dispatch => {
-      fetch('https://keeptrack-jg.herokuapp.com/api/v1/list/row', {
+      fetch(`${port}/api/v1/list/row`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -231,7 +232,7 @@ export const addReminder = (token) => {
   }
   export const deleteRow = (id, row) => {
     return dispatch => {
-      fetch('https://keeptrack-jg.herokuapp.com/api/v1/list/row', {
+      fetch(`${port}/api/v1/list/row`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -251,7 +252,7 @@ export const addReminder = (token) => {
   }
   export const deleteColumn = (id, column) => {
     return dispatch => {
-      fetch('https://keeptrack-jg.herokuapp.com/api/v1/list/column', {
+      fetch('`${port}/api/v1/list/column`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -271,7 +272,7 @@ export const addReminder = (token) => {
   }
   export const changeInfo = (id, type, text, type_id) => {
     return dispatch => {
-      fetch('https://keeptrack-jg.herokuapp.com/api/v1/list/info', {
+      fetch(`${port}/api/v1/list/info`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -291,7 +292,7 @@ export const addReminder = (token) => {
   }
   export const deleteList = (id) => {
     return dispatch => {
-      fetch('https://keeptrack-jg.herokuapp.com/api/v1/list', {
+      fetch(`${port}/api/v1/list`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -311,7 +312,7 @@ export const addReminder = (token) => {
   }
   export const projectChanger = (project) => {
     return dispatch => {
-      fetch('https://keeptrack-jg.herokuapp.com/api/v1/project', {
+      fetch(`${port}/api/v1/project`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -331,7 +332,7 @@ export const addReminder = (token) => {
   }
   export const postProject = (title) => {
     return dispatch => {
-      fetch('https://keeptrack-jg.herokuapp.com/api/v1/project',{
+      fetch(`${port}/api/v1/project`,{
         method: 'POST',
         headers:{
           'Content-Type': 'application/json',
