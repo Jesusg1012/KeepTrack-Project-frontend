@@ -1,7 +1,7 @@
 const addUser = (user) => ({ type: 'ADD_USER', payload: user })
 const setProject = (project) => ({type: 'ADD_PROJECT', payload: project})
 const setList = (list) => ({type: 'ADD_LIST', payload: list})
-const port = process.env.PORT || "http://localhost:4000"
+const port = "https://keeptrack-jg.herokuapp.com"
 export const logout = () => ({type: 'REMOVE_USER', payload:null})
 export const getUser = (token) => {
   return dispatch => {
