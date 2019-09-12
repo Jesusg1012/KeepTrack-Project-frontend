@@ -252,7 +252,7 @@ export const addReminder = (token) => {
   }
   export const deleteColumn = (id, column) => {
     return dispatch => {
-      fetch('`${port}/api/v1/list/column`, {
+      fetch(`${port}/api/v1/list/column`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
