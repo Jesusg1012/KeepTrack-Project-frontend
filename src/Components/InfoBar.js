@@ -24,6 +24,7 @@ class InfoBar extends Component {
 render(){
     return (
       <div id="infoBar">
+      <div id="APINotice">Notice: we use the free service of the Twilio API for texting, so text messages are disabled</div>
       {this.props.user ?
       <div className="user-info">
       <div>Upcoming reminders:</div>

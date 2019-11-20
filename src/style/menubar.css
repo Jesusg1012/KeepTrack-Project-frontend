@@ -293,3 +293,11 @@
   height: 1rem;
   border-width: 0.2em;
 }
+#APINotice{
+  position: absolute;
+  width: 550px;
+  margin-left:  0px;
+  margin-right: 0px;
+  font-size: 12px;
+  padding-top: 13px;
+}

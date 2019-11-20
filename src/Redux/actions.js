@@ -2,7 +2,20 @@ const addUser = (user) => ({ type: 'ADD_USER', payload: user })
 const setProject = (project) => ({type: 'ADD_PROJECT', payload: project})
 const setList = (list) => ({type: 'ADD_LIST', payload: list})
 const port = "https://keeptrack-jg.herokuapp.com"
+// const port = "http://localhost:4000"
+function handleErrors(response) {
+    if (!response.ok) {
+        throw Error(response.statusText);
+    }
+    return response;
+}
+function handleLogout(){
+  localStorage.removeItem("token")
+  localStorage.removeItem("currentProject")
+  window.location.reload();
+}
 export const logout = () => ({type: 'REMOVE_USER', payload:null})
+
 export const getUser = (token) => {
   return dispatch => {
   return fetch(`${port}/api/v1/profile`, {
@@ -11,9 +24,13 @@ export const getUser = (token) => {
         Authorization: `Bearer ${token}`
       }
     })
+      .then(handleErrors)
       .then(resp => resp.json())
       .then(currentUser => dispatch(addUser(currentUser)))
-      .catch(console.error)
+      .catch((error) => {
+         console.log(error)
+         handleLogout()
+      })
     }
   }
 

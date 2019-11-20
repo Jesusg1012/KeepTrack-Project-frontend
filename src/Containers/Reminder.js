@@ -192,7 +192,7 @@ class Reminder extends Component {
               {this.props.user.reminders.map(reminder => {
                     return <div class={reminder.active ? "reminder":"reminder not-active"}>
                     {reminder.active?
-                      <input type="checkbox" id={reminder.id} name="phone" onClick={this.handleClick} checked={reminder.phone}></input>: null
+                      <input type="checkbox" id={reminder.id} disabled={true} name="phone" onClick={this.handleClick} checked={reminder.phone}></input>: null
                     }
                     </div>
                   })}
